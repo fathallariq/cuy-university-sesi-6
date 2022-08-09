@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>fathallariq</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <a onclick="reRender()" id="home">HOME</a>
+        <a onclick="darkMode()" id="mode">MODE-DARK</a>
+        <a onclick="coolMode()" id="modeCool">MODE-DINGIN</a>
+      </nav>
+      <h1 id="text">fathallariq</h1>
+      <h1 id="cool">🥶🥶🥶🥶🥶🥶🥶</h1>
+      <h1 id="chill">😎😎😎😎😎😎😎</h1>
+      <p class="info" id="info"></p>
+    </div>
+
+    <!-- initializing function script -->
+    <script>
+      let body = document.body;
+      let info = document.getElementById("info");
+      let mode = document.getElementById("mode");
+      let modeCool = document.getElementById("modeCool");
+      let text = document.getElementById("text");
+      let cool = document.getElementById("cool");
+      let chill = document.getElementById("chill");
+      let home = document.getElementById("home");
+
+      const darkLimit = 4;
+      let darkCounter = 0;
+      let darkRemainingLeft;
+
+      const coolLimit = 4;
+      let coolCounter = 0;
+      let coolRemainingLeft;
+
+      cool.style.display = "none";
+      chill.style.display = "none";
+
+      function darkMode() {
+        if (darkRemainingLeft == 1) {
+          info.textContent = "✨JATAH GANTI MODE HABIS✨";
+          mode.style.display = "none";
+          modeCool.style.display = "none";
+          home.textContent = "RESTART";
+          return;
+        }
+        darkCounter += 1;
+        darkRemainingLeft = darkLimit - darkCounter;
+
+        if (darkCounter % 2 == 0) {
+          mode.textContent = "MODE-DARK";
+          modeCool.style.display = "none";
+        } else if (darkCounter % 2 !== 0) {
+          mode.textContent = "MODE-LIGHT";
+          modeCool.style.display = "none";
+        }
+        //render ke info elemt
+        info.textContent = `✨Mode terpakai ${darkCounter}x, tersisa ${darkRemainingLeft}✨`;
+
+        body.classList.toggle("dark");
+      }
+
+      function reRender() {
+        location.reload();
+      }
+
+      function coolMode() {
+        if (coolRemainingLeft == 1) {
+          info.textContent = "✨JATAH GANTI MODE HABIS✨";
+          mode.style.display = "none";
+          modeCool.style.display = "none";
+          home.textContent = "RESTART";
+          home.style.background = "white";
+          home.style.color = "#4384D3";
+          cool.style.display = "block";
+          chill.style.display = "none";
+          text.style.display = "none";
+          return;
+        }
+        coolCounter += 1;
+        coolRemainingLeft = coolLimit - coolCounter;
+
+        if (coolCounter % 2 == 0) {
+          modeCool.textContent = "MODE-DINGIN";
+          cool.style.display = "none";
+          chill.style.display = "block";
+          text.style.display = "none";
+          mode.style.display = "none";
+          home.style.color = "white";
+          modeCool.style.color = "white";
+        } else if (coolCounter % 2 !== 0) {
+          modeCool.textContent = "MODE-SANTAI";
+          cool.style.display = "block";
+          chill.style.display = "none";
+          text.style.display = "none";
+          mode.style.display = "none";
+          home.style.color = "#4384D3";
+          modeCool.style.color = "#4384D3";
+        }
+        //render ke info elemt
+        info.textContent = `✨Mode terpakai ${coolCounter}x, tersisa ${coolRemainingLeft}✨`;
+
+        body.classList.toggle("cool");
+      }
+
+      function reRender() {
+        location.reload();
+      }
+    </script>
+  </body>
+</html>
